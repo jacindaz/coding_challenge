@@ -15,7 +15,7 @@ module Notifier
 
   def self.send_sms(client, text_body, image_url = nil)
     twilio_number = ENV['TWILIO_FROM_NUMBER']
-    to_number = ENV[NUMBER_TO_SEND_SMS]
+    to_number = ENV['NUMBER_TO_SEND_SMS']
 
     message = client.account.messages.create(
       from: twilio_number,
