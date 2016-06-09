@@ -2,8 +2,7 @@ require 'yaml'
 require 'twilio-ruby'
 
 module Notifier
-  def self.send_sms_notifications
-    text_body = "Test message from Twilio"
+  def self.send_sms_notifications(text_body = "Text from Twilio")
     twilio_account_sid = ENV['TWILIO_ACCOUNT_SID']
     twilio_auth_token = ENV['TWILIO_AUTH_TOKEN']
 

@@ -1,4 +1,14 @@
 %h3 Hello world!
 %hr
 
-%p hi again
+- if session.any?
+  %br
+  %p
+    = session[:message]
+  %br
+
+%form{ action: "/send_text", method: 'post'}
+  %label{ name: 'text_body'} Send a text message!
+  %br
+  %input{ type: 'text', name: 'text_body', id: 'text_body' }
+  %input{ type: 'submit', value: 'Submit' }
