@@ -9,7 +9,7 @@ ENV['RACK_ENV'] ||= 'development'
 require 'bundler'
 Bundler.require :default, ENV['RACK_ENV'].to_sym
 
-enable :sessions
+use Rack::Session::Cookie, :expire_after => 2 # In seconds
 
 get '/' do
   haml :index

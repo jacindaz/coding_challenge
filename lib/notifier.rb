@@ -16,13 +16,11 @@ module Notifier
     twilio_number = ENV['TWILIO_FROM_NUMBER']
     to_number = ENV['NUMBER_TO_SEND_SMS']
 
-    message = client.account.messages.create(
+    client.account.messages.create(
       from: twilio_number,
       to: to_number,
       body: text_body
       # media_url: image_url
     )
-    puts "SMS sent to: #{to_number}, from: #{twilio_number}"
-    puts "SMS message was: #{text_body}"
   end
 end
