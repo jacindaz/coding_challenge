@@ -8,7 +8,10 @@
   %br
 
 %form{ action: "/send_text", method: 'post'}
-  %label{ name: 'text_body'} Send a text message!
-  %br
-  %input{ type: 'text', name: 'text_body', id: 'text_body' }
+  %div
+    %label{ name: 'text_body'} Text message
+    %input{ type: 'text', name: 'text_body', id: 'text_body' }
+  %div
+    %label{ name: 'text_number'} Number to text
+    %input{type: 'text', name: 'text_number', id: 'text_number'}
   %input{ type: 'submit', value: 'Submit' }

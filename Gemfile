@@ -6,4 +6,7 @@ gem 'sinatra'
 gem 'twilio-ruby'
 gem 'haml'
 
-gem 'dotenv', :groups => [:development, :test]
+group :development, :test do
+  gem 'dotenv'
+  gem 'better_errors'
+end
