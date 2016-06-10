@@ -3,11 +3,13 @@ require 'sinatra/base'
 require 'net/http'
 require 'json'
 require 'open-uri'
+require 'pry'
 
 require 'dotenv'
 Dotenv.load
 
 require_relative './lib/notifier'
+require_relative './lib/giphy'
 
 ENV['RACK_ENV'] ||= 'development'
 

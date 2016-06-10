@@ -9,4 +9,5 @@ gem 'haml'
 group :development, :test do
   gem 'dotenv'
   gem 'better_errors'
+  gem 'pry'
 end
