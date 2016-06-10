@@ -1,4 +1,9 @@
 require 'sinatra/base'
+
+require 'net/http'
+require 'json'
+require 'open-uri'
+
 require 'dotenv'
 Dotenv.load
 
