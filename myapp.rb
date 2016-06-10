@@ -22,7 +22,9 @@ end
 
 post '/send_text' do
   text_message_body = params[:text_body]
-  Notifier.send_sms_notifications(params[:text_number], text_message_body)
+
+  Notifier.send_sms_notifications(params[:image_search], params[:text_number], text_message_body)
+
   session[:message] = "Yay! You sent a text with message #{text_message_body}"
 
   haml :index
