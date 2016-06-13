@@ -13,12 +13,7 @@ class Notifier
 
   def send_sms
     begin
-      twilio_api_client.account.messages.create(
-        from: @from_number,
-        to: @to_number,
-        body: @text_body,
-        media_url: giphy_image_url
-      )
+      twilio_api_client.account.messages.create(twilio_message)
     rescue Twilio::REST::RequestError => e
       e.message
     rescue Exception => e
@@ -28,11 +23,20 @@ class Notifier
 
   private
 
-  def twilio_api_client
-    Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+  def twilio_message
+    {
+      from: @from_number,
+      to: @to_number,
+      body: @text_body,
+      media_url: giphy_image_url
+    }
   end
 
   def giphy_image_url
     ::Giphy.new(@image_search_terms).giphy_image_search_url
+  end
+
+  def twilio_api_client
+    Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
   end
 end
