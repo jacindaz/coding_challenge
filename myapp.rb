@@ -26,7 +26,7 @@ post '/send_text' do
   text_message_body = params[:text_body]
 
   begin
-    Notifier.send_sms_notifications(params[:image_search], params[:text_number], text_message_body)
+    Notifier.new(params[:image_search], params[:to_number], text_message_body).send_sms
   rescue Exception => e
     session[:message] = "Uh oh! Your text could not be sent.\n\nError message: #{e}"
   else

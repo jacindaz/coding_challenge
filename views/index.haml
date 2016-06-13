@@ -11,11 +11,11 @@
 %form{ action: "/send_text", method: 'post'}
   %div
     %label{ name: 'text_body'} Text message
-    %input{ type: 'text', name: 'text_body', id: 'text_body' }
+    %input{ type: 'text', name: 'text_body' }
   %div
     %label{ name: 'image_search'} Image search terms
-    %input{ type: 'text', name: 'image_search', id: 'image_search' }
+    %input{ type: 'text', name: 'image_search' }
   %div
-    %label{ name: 'text_number'} Number to text
-    %input{type: 'text', name: 'text_number', id: 'text_number'}
+    %label{ name: 'to_number'} Number to text
+    %input{type: 'text', name: 'to_number'}
   %input{ type: 'submit', value: 'Submit' }
