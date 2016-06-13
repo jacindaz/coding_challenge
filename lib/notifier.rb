@@ -12,9 +12,7 @@ class Notifier
   end
 
   def send_sms
-    binding.pry
     begin
-
       twilio_api_client.account.messages.create(
         from: @from_number,
         to: @to_number,

@@ -25,7 +25,6 @@ class Giphy
   end
 
   def construct_api_endpoint
-    # http://api.giphy.com/v1/gifs/search?q=funny+cat&api_key=dc6zaTOxFJmzC
     @api_endpoint + "#{@search_params}&api_key=dc6zaTOxFJmzC"
   end
 end
