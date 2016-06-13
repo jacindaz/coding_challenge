@@ -25,9 +25,13 @@ end
 post '/send_text' do
   text_message_body = params[:text_body]
 
-  Notifier.send_sms_notifications(params[:image_search], params[:text_number], text_message_body)
-
-  session[:message] = "Yay! You sent a text with message #{text_message_body}"
+  begin
+    Notifier.send_sms_notifications(params[:image_search], params[:text_number], text_message_body)
+  rescue Exception => e
+    session[:message] = "Uh oh! Your text could not be sent.\n\nError message: #{e}"
+  else
+    session[:message] = "Yay! You sent a text with message #{text_message_body}"
+  end
 
   haml :index
 end
