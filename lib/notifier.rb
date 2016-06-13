@@ -1,31 +1,40 @@
 require 'twilio-ruby'
 require 'pry'
+require_relative 'giphy'
 
-module Notifier
-  def self.send_sms_notifications(image_search_terms, text_number, text_body = "Text from Twilio")
-    twilio_account_sid = ENV['TWILIO_ACCOUNT_SID']
-    twilio_auth_token = ENV['TWILIO_AUTH_TOKEN']
+class Notifier
+  def initialize(image_search_terms, to_number, text_body)
+    @image_search_terms = image_search_terms
+    @text_body = text_body || "A text from Twilio"
 
-    client = Twilio::REST::Client.new(twilio_account_sid, twilio_auth_token)
-    send_sms(client, text_number, text_body, image_search_terms)
+    @from_number = ENV['TWILIO_FROM_NUMBER']
+    @to_number = to_number
   end
 
-  private
-
-  def self.send_sms(client, to_number, text_body, image_search_terms)
-    twilio_number = ENV['TWILIO_FROM_NUMBER']
-
+  def send_sms
+    binding.pry
     begin
-      client.account.messages.create(
-        from: twilio_number,
-        to: to_number,
-        body: text_body,
-        media_url: ::Giphy.new(image_search_terms).giphy_image_search_url
+
+      twilio_api_client.account.messages.create(
+        from: @from_number,
+        to: @to_number,
+        body: @text_body,
+        media_url: giphy_image_url
       )
     rescue Twilio::REST::RequestError => e
       e.message
     rescue Exception => e
       e.message
     end
+  end
+
+  private
+
+  def twilio_api_client
+    Twilio::REST::Client.new(ENV['TWILIO_ACCOUNT_SID'], ENV['TWILIO_AUTH_TOKEN'])
+  end
+
+  def giphy_image_url
+    ::Giphy.new(@image_search_terms).giphy_image_search_url
   end
 end
