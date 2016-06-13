@@ -9,13 +9,21 @@
   %br
 
 %form{ action: "/send_text", method: 'post'}
-  %div
-    %label{ name: 'text_body'} Text message
-    %input{ type: 'text', name: 'text_body' }
-  %div
-    %label{ name: 'image_search'} Image search terms
-    %input{ type: 'text', name: 'image_search' }
-  %div
-    %label{ name: 'to_number'} Number to text
-    %input{type: 'text', name: 'to_number'}
-  %input{ type: 'submit', value: 'Submit' }
+  .container
+    .row
+      .col-md-2.margin-top
+        %label{ name: 'text_body'} Text message
+      .col-md-2.margin-top
+        %input{ type: 'text', name: 'text_body' }
+    .row
+      .col-md-2.margin-top
+        %label{ name: 'image_search'} Image search terms
+      .col-md-2.margin-top
+        %input{ type: 'text', name: 'image_search' }
+    .row
+      .col-md-2.margin-top
+        %label{ name: 'to_number'} Number to text
+      .col-md-2.margin-top
+        %input{type: 'text', name: 'to_number'}
+    .row
+      %input.btn.btn-primary.margin-top{ type: 'submit', value: 'Submit' }
