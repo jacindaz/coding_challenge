@@ -28,27 +28,35 @@ end
 
 post '/send_text' do
   text_message_body = params[:text_body]
+  image_search_terms = params[:image_search]
+  text_to_number = params[:to_number]
 
-  if params["to_number"] == "" || params["text_body"] == ""
-    if params["to_number"] == ""
+  if text_to_number == "" || text_message_body == ""
+    if text_to_number == ""
 
       flash[:error_number] = "Must fill in a phone number."
     end
 
-    if params["text_body"] == ""
+    if text_message_body == ""
       flash[:error_text] = "Must fill in a text body."
     end
 
     redirect '/'
   else
     begin
-      Notifier.new(params[:image_search], params[:to_number], text_message_body).send_sms
+      Notifier.new(image_search_terms, text_to_number, text_message_body).send_sms
     rescue Exception => e
       flash[:message] = "Uh oh! Your text could not be sent.\n\nError message: #{e}"
     rescue Twilio::REST::RequestError => e
       flash[:message] = "Uh oh! Your text could not be sent.\n\nError message: #{e}"
     else
-      flash[:message] = "Yay! You sent a text with message #{text_message_body}"
+      message = "Yay! You sent a text with message #{text_message_body}"
+
+      if image_search_terms
+        message += ", and used these image search terms: #{image_search_terms}"
+      end
+
+      flash[:message] = message
     end
   end
 

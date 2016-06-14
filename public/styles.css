@@ -9,4 +9,12 @@ body {
   padding: 5px;
 }
 
+.flash_message_style {
+  color: purple;
+  font-weight: bold;
+  border: 1px dotted gray;
+  padding: 5px;
+  background-color: #cce8f0;
+}
+
 .margin-top { margin-top: 10px; }

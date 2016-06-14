@@ -3,7 +3,7 @@
 %hr
 
 - if flash[:message]
-  .error_style= flash[:message]
+  .flash_message_style= flash[:message]
   %br
 
 %form{ action: "/send_text", method: 'post'}
