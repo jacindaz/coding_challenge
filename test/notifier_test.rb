@@ -15,7 +15,7 @@ class MyAppTest < Minitest::Test
   def test_giphy_image_url
     image_url = @notifier.send(:giphy_image_url)
 
-    assert_includes image_url, "http://media2.giphy.com/media/", "URL of image from Giphy should include 'http://media2.giphy.com/media/'"
+    assert_includes image_url, "giphy.com/media/", "URL of image from Giphy should include 'http://media2.giphy.com/media/'"
   end
 
   def test_twilio_message

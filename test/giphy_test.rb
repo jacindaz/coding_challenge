@@ -16,7 +16,7 @@ class MyAppTest < Minitest::Test
     data = @giphy.get_image_data
     image_url = @giphy.send(:return_image_url, data)
 
-    assert_includes image_url, "http://media0.giphy.com/media/", "The Giphy API should return a gif url."
+    assert_includes image_url, "giphy.com/media/", "The Giphy API should return a gif url."
   end
 
   def test_construct_api_endpoint
