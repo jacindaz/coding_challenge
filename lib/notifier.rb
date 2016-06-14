@@ -1,5 +1,5 @@
 require 'twilio-ruby'
-require 'pry'
+require 'pry' if ENV['RACK_ENV'] == 'development'
 require_relative 'giphy'
 
 class Notifier
