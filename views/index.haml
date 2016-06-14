@@ -2,19 +2,21 @@
   %a{ href: '/' } PLM Coding Challenge
 %hr
 
-- if session.any?
-  %br
-  %p
-    = session[:message]
+- if flash[:message]
+  .error_style= flash[:message]
   %br
 
 %form{ action: "/send_text", method: 'post'}
   .container
+    - if flash[:error_number] || flash[:error_text]
+      .row
+        .col-md-5
+          .error_style= styled_flash
     .row
       .col-md-2.margin-top
         %label{ name: 'text_body'} Text message
       .col-md-2.margin-top
-        %input{ type: 'text', name: 'text_body' }
+        %input{ type: 'text', name: 'text_body', required: '' }
     .row
       .col-md-2.margin-top
         %label{ name: 'image_search'} Image search terms
@@ -24,6 +26,6 @@
       .col-md-2.margin-top
         %label{ name: 'to_number'} Number to text
       .col-md-2.margin-top
-        %input{type: 'text', name: 'to_number'}
+        %input{type: 'text', name: 'to_number', required: '' }
     .row
       %input.btn.btn-primary.margin-top{ type: 'submit', value: 'Submit' }
