@@ -5,13 +5,16 @@ require 'net/http'
 require 'json'
 require 'open-uri'
 
-require 'dotenv'
-Dotenv.load
+ENV['RACK_ENV'] ||= 'development'
+if ENV['RACK_ENV'] == 'development'
+  require 'dotenv'
+  Dotenv.load
+  require 'pry'
+end
 
 require_relative './lib/notifier'
 require_relative './lib/giphy'
 
-ENV['RACK_ENV'] ||= 'development'
 
 require 'bundler'
 Bundler.require :default, ENV['RACK_ENV'].to_sym
