@@ -1,0 +1,12 @@
+body {
+  margin: 2% 8% 2% 8%;
+}
+
+.error_style {
+  color: red;
+  font-weight: bold;
+  border: 1px dotted gray;
+  padding: 5px;
+}
+
+.margin-top { margin-top: 10px; }
