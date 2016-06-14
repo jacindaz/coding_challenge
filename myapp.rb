@@ -4,7 +4,6 @@ require 'sinatra/flash'
 require 'net/http'
 require 'json'
 require 'open-uri'
-require 'pry'
 
 require 'dotenv'
 Dotenv.load
