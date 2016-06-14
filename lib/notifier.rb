@@ -12,13 +12,7 @@ class Notifier
   end
 
   def send_sms
-    begin
-      twilio_api_client.account.messages.create(twilio_message)
-    rescue Twilio::REST::RequestError => e
-      e.message
-    rescue Exception => e
-      e.message
-    end
+    twilio_api_client.account.messages.create(twilio_message)
   end
 
   private
