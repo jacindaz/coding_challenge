@@ -32,6 +32,15 @@ post '/send_text' do
     session[:message] = "Uh oh! Your text could not be sent.\n\nError message: #{e}"
   else
     session[:message] = "Yay! You sent a text with message #{text_message_body}"
+    begin
+      Notifier.new(params[:image_search], params[:to_number], text_message_body).send_sms
+    rescue Exception => e
+      flash[:message] = "Uh oh! Your text could not be sent.\n\nError message: #{e}"
+    rescue Twilio::REST::RequestError => e
+      flash[:message] = "Uh oh! Your text could not be sent.\n\nError message: #{e}"
+    else
+      flash[:message] = "Yay! You sent a text with message #{text_message_body}"
+    end
   end
 
   haml :index
